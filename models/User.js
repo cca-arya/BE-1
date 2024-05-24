@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+
+// user schema
+// field email: user email
+// field password: user password
+// field status: user status (AVAILABLE or BUSY)
+
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },

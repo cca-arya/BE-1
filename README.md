@@ -48,3 +48,28 @@ In summary, the project implements a real-time chat system with user authenticat
 
 
 
+nodemon app.js
+
+http://localhost:3000/auth/register
+{
+  "email": "test@example.com",
+  "password": "password"
+}
+
+
+http://localhost:3000/auth/login
+{
+  "email": "test@example.com",
+  "password": "password"
+}
+We will get a token here 
+
+
+http://localhost:3000/chat/send
+{
+  "recipientId": "66503022b37c81867451e55a",
+  "content": "Hello 123! new"
+}
+
+Message will be stored in db
+

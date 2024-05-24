@@ -7,6 +7,7 @@ const chatRoutes = require('./routes/chatRoutes');
 
 const app = express();
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
     origin: '*',
@@ -14,6 +15,7 @@ const io = new Server(server, {
   }
 });
 
+// middleware
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/chat', chatRoutes);
@@ -23,13 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// mongoose.connect('mongodb://localhost:27017/chat-app', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// }, () => {
-//   console.log('Connected to MongoDB');
-// });
-
+// connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/chat-app', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('Connected to MongoDB');
 }
@@ -38,6 +34,8 @@ mongoose.connect('mongodb://localhost:27017/chat-app', { useNewUrlParser: true, 
 }
 );
 
+
+// socket.io connection
 io.on('connection', (socket) => {
   console.log('New client connected');
   socket.on('join', (userId) => {
@@ -48,6 +46,8 @@ io.on('connection', (socket) => {
   });
 });
 
+
+// start the server
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
 });

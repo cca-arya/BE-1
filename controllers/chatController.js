@@ -2,6 +2,7 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 const { getLLMResponse } = require('../utils/llmService');
 
+// Send a message to a user
 exports.sendMessage = async (req, res) => {
   const { recipientId, content } = req.body;
   const senderId = req.userId;
@@ -34,6 +35,7 @@ exports.sendMessage = async (req, res) => {
   }
 };
 
+// Get all messages between the user and a recipient
 exports.getMessages = async (req, res) => {
   const { userId } = req;
   const { recipientId } = req.params;
