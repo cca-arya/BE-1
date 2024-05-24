@@ -23,12 +23,20 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb://localhost:27017/chat-app', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, () => {
-  console.log('Connected to MongoDB');
-});
+// mongoose.connect('mongodb://localhost:27017/chat-app', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }, () => {
+//   console.log('Connected to MongoDB');
+// });
+
+mongoose.connect('mongodb://localhost:27017/chat-app', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    console.log('Connected to MongoDB');
+}
+).catch((error) => {
+  console.log('Error: ', error);
+}
+);
 
 io.on('connection', (socket) => {
   console.log('New client connected');
